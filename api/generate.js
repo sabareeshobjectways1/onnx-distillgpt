@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   try {
     if (!generator) {
-      generator = await pipeline('text-generation', 'Xenova/distilgpt2');
+      generator = await pipeline('text-generation', 'Xenova/gpt2-medium');
     }
 
     const output = await generator(prompt, {
