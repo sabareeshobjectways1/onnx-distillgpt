@@ -1,0 +1,9 @@
+{
+  "name": "vercel-gpt-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "@xenova/transformers": "^2.6.0"
+  }
+}
