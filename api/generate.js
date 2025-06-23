@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ result: output[0].generated_text });
   } catch (err) {
-    console.error('Text generation error:', err.message, err.stack);
-    res.status(500).json({ error: 'Failed to generate text', detail: err.message });
+    console.error(err);
+    res.status(500).json({ error: 'Failed to generate text' });
   }
 }
