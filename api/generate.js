@@ -3,11 +3,11 @@ import { pipeline } from '@xenova/transformers';
 let generator;
 
 export default async function handler(req, res) {
-  const prompt = req.query.prompt || 'Hello, world!';
+  const prompt = req.query.prompt || 'What is the capital of France?';
 
   try {
     if (!generator) {
-      generator = await pipeline('text-generation', 'Xenova/distilgpt2');
+      generator = await pipeline('text-generation', 'Xenova/gemma-2b-it'); // small Gemma model
     }
 
     const output = await generator(prompt, {
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ result: output[0].generated_text });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to generate text' });
+    console.error('Generation error:', err.message, err.stack);
+    res.status(500).json({ error: 'Failed to generate text', detail: err.message });
   }
 }
